@@ -1,0 +1,38 @@
+---
+import SpaceTrigger from './SpaceTrigger.svelte'
+---
+
+<footer class="footer" id="footer">
+  <ul class="link-list">
+    <li>
+      <a
+        href="mailto:shettylikith.rajesh@msam.christuniversity.in"
+        rel="noopener noreferrer"
+        target="_blank"
+      >
+        EMAIL
+      </a>
+    </li>
+    <li>
+      <a
+        href="https://github.com/LikithSh3tty"
+        rel="noopener noreferrer"
+        target="_blank"
+      >
+        GITHUB
+      </a>
+    </li>
+  </ul>
+  <SpaceTrigger client:only transition:persist />
+</footer>
+
+<style>
+  .footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    align-self: flex-end;
+    margin-top: 160px;
+    padding-bottom: var(--gui-bottom);
+  }
+</style>

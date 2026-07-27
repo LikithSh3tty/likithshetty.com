@@ -1,0 +1,55 @@
+---
+import TVLayout from '../layouts/TVLayout.astro'
+---
+
+<TVLayout>
+  <article class="bio">
+    <p class="big-text">
+      Hi! I'm <span class="bio__photo" tabindex="0">Likith Shetty</span>. I build
+      <button class="button-text js-channel-trigger" data-channel="8"
+        >agents</button
+      >, retrieval systems and the occasional optimizer.
+      <br /><br />Most of what I make ends up on
+      <a
+        href="https://github.com/LikithSh3tty"
+        target="_blank"
+        rel="noopener noreferrer">GitHub</a
+      >: a support desk that answers out of product docs by meaning rather than
+      keywords, a drift watchman that investigates a model before it retrains
+      it, an income tracker that does an agency's accounting, and a packer that
+      fits the most whole cells into an awkward shape.
+      <br /><br />I like systems that admit when they don't know something. Every
+      one of those four will tell you it isn't sure rather than guess at an
+      answer.
+      <br /><br />If you'd like to chat, feel free to reach me by
+      <a href="mailto:shettylikith.rajesh@msam.christuniversity.in">e-mail</a>.
+    </p>
+  </article>
+</TVLayout>
+
+<style>
+  .bio__photo {
+    position: relative;
+    color: var(--text-secondary);
+
+    &::after {
+      content: '';
+      display: block;
+      position: absolute;
+      z-index: var(--layer-me-hover);
+      top: calc(100% + 1em);
+      left: 1rem;
+      width: 14rem;
+      padding-bottom: 14rem;
+      visibility: hidden;
+      background-size: cover;
+    }
+
+    &:hover::after,
+    &:focus::after {
+      background-image: url(/assets/images/me.jpg);
+      transition: visibility 0s 0.2s;
+      visibility: visible;
+    }
+  }
+</style>
