@@ -1,0 +1,66 @@
+---
+import TVLayout from '../layouts/TVLayout.astro'
+
+// The songs, not the playlist index. Spotify's Client Credentials flow
+// returns playlist metadata but 403s on /tracks, so the public embed is
+// the only route to an always-current track list without a user OAuth
+// round trip. src/modules/playlists.ts holds the hand-listed fallback.
+const PLAYLIST_ID = '5MgutE5lg2nyijjaxpYrbn'
+const src = `https://open.spotify.com/embed/playlist/${PLAYLIST_ID}?utm_source=generator&theme=0`
+---
+
+<TVLayout
+  title="playlists"
+  description="What Likith Shetty builds things to."
+>
+  <article class="playlists">
+    <p class="intro">Almost none of it gets built in silence.</p>
+
+    <div class="frame">
+      <iframe
+        {src}
+        title="ifwt on Spotify"
+        width="100%"
+        height="100%"
+        style="border:0"
+        loading="lazy"
+        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+      ></iframe>
+    </div>
+
+    <p class="fallback">
+      <a
+        href={`https://open.spotify.com/playlist/${PLAYLIST_ID}`}
+        target="_blank"
+        rel="noopener noreferrer">Open in Spotify</a
+      >
+    </p>
+  </article>
+</TVLayout>
+
+<style>
+  .intro {
+    margin: 0 0 1.6rem;
+    color: var(--text-primary);
+    font-size: var(--font-size-primary);
+  }
+
+  .frame {
+    max-width: 40rem;
+    height: min(62vh, 460px);
+    padding: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    background: rgba(0, 0, 0, 0.45);
+  }
+
+  .frame iframe {
+    display: block;
+    border-radius: 10px;
+  }
+
+  .fallback {
+    margin: 1.2rem 0 0;
+    font-size: var(--font-size-primary);
+    text-transform: uppercase;
+  }
+</style>
