@@ -1,18 +1,18 @@
 {
-  "name": "kaisermann.me",
+  "name": "portfolio",
   "type": "module",
-  "version": "2.0.0-astro",
+  "version": "1.0.0",
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview"
   },
   "dependencies": {
-    "@astrojs/sitemap": "^3.5.1",
-    "@astrojs/svelte": "^7.1.0",
-    "astro": "^5.13.3",
+    "@astrojs/sitemap": "3.5.1",
+    "@astrojs/svelte": "7.1.0",
+    "astro": "5.13.3",
     "js-levenshtein": "^1.1.6",
-    "svelte": "^5.38.2",
+    "svelte": "5.38.2",
     "typescript": "^5.9.2"
   },
   "devDependencies": {
