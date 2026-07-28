@@ -9,6 +9,9 @@ import svelte from '@astrojs/svelte'
 export default defineConfig({
   site: 'https://likithshetty.dev',
 
+  // the floating dev-only toolbar; never shipped in a build, hidden here too
+  devToolbar: { enabled: false },
+
   integrations: [sitemap(), svelte()],
 
   env: {
