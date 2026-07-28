@@ -1,18 +1,15 @@
 ---
 import TVLayout from '../layouts/TVLayout.astro'
+import { PLAYLIST_ID } from '../modules/playlists'
 
 // The songs, not the playlist index. Spotify's Client Credentials flow
 // returns playlist metadata but 403s on /tracks, so the public embed is
 // the only route to an always-current track list without a user OAuth
 // round trip. src/modules/playlists.ts holds the hand-listed fallback.
-const PLAYLIST_ID = '5MgutE5lg2nyijjaxpYrbn'
 const src = `https://open.spotify.com/embed/playlist/${PLAYLIST_ID}?utm_source=generator&theme=0`
 ---
 
-<TVLayout
-  title="playlists"
-  description="What Likith Shetty builds things to."
->
+<TVLayout title="playlists" description="What Likith Shetty builds things to.">
   <article class="playlists">
     <p class="intro">Almost none of it gets built in silence.</p>
 
