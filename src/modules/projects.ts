@@ -45,8 +45,7 @@ export const projects: Record<string, Project[]> = {
     {
       url: 'https://github.com/LikithSh3tty/Portfolio',
       name: 'this website',
-      description:
-        'a television. built on <a href="https://github.com/kaisermann/kaisermann" target="_blank" rel="noopener noreferrer">kaisermann.me</a>',
+      description: 'a television. astro, svelte, and rather a lot of scanlines',
     },
   ],
 } as const
