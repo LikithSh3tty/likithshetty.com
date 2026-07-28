@@ -64,15 +64,9 @@
         </div>
 
         <div class="brand">
-          <img
-            loading="lazy"
-            src="/assets/images/kiwivision.svg"
-            alt="kiwivision"
-            width="103"
-            height="10"
-          />
+          <span class="wordmark">LIKITHSH3TTY</span>
           <br />
-          <span>COMPUTER SPACE COMMAND</span>
+          <span>PORTABLE CHANNEL COMMAND</span>
         </div>
       </div>
     </div>
@@ -302,7 +296,9 @@
     color: #000;
   }
 
-  img {
+  .wordmark {
     display: inline-block;
+    font-size: 1.15em;
+    letter-spacing: 0.14em;
   }
 </style>
