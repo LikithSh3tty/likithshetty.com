@@ -1,6 +1,5 @@
 ---
 import '../styles/main.css'
-import { NODE_ENV } from 'astro:env/server'
 import { ClientRouter } from 'astro:transitions'
 
 interface Props {
@@ -9,16 +8,14 @@ interface Props {
   image?: string
 }
 
-const env = (dev: string, prod = dev) =>
-  NODE_ENV === 'development' ? dev : prod
-
 const site = {
   name: 'likithsh3tty',
   tagline: 'ai/ml engineer',
   description:
     'M.Sc. AI & ML student in Bengaluru. I build agents, retrieval systems and the occasional optimizer. Come say hi.',
-  twitter: '',
-  baseUrl: env('http://localhost:4321', 'https://likithshetty.com'),
+  baseUrl: import.meta.env.DEV
+    ? 'http://localhost:4321'
+    : 'https://likithshetty.com',
   thumb: '/assets/images/big-rainbow-static.jpg',
 }
 
