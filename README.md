@@ -8,14 +8,8 @@ My personal site, built as a vintage CRT television. The nav is a remote control
 the pages are channels, and the whole thing is wrapped in scanlines, static and
 a VCR OSD font.
 
-Channel 00 is the site itself. Channels 01 through 08 are video loops and channel
-09 is the webcam.
-
-## Credit
-
-This is built on [kaisermann.me](https://github.com/kaisermann/kaisermann) by
-Christian Kaisermann, used under the MIT license. The TV concept, the CRT effects
-and the interaction model are his. The content, the projects and the copy are mine.
+Channel 00 is the site itself. Channels 01 through 09 are video loops and channel
+10 is the webcam.
 
 ## Running it locally
 
@@ -53,9 +47,18 @@ Portfolio/
 └── public/assets/            # fonts, textures, cursors
 ```
 
+## Notes
+
+Astro and Svelte are pinned to exact versions on purpose. Newer releases break
+hydration on every island, which silently kills the TV while the page still
+renders. Do not run `npm update` here.
+
+All channel videos need `-movflags +faststart`, or the browser buffers the whole
+file before playing. A fragmented mp4 reports a duration of zero and will never
+loop. See `public/assets/videos/README.md`.
+
 ## Still to do
 
-- Record channel loops for 01 through 08. Nothing plays on those until
-  `public/assets/videos/channel-0N.{mp4,webm}` exist.
-- Add `public/assets/images/me.jpg` for the photo that appears on name hover.
 - Point a real domain at it and update `site` in `astro.config.mjs`.
+- Tie the remaining channels to something. Channel 09 is Bengaluru, linked from
+  the word in the bio; the rest are unthemed.
