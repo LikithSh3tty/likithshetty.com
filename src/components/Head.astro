@@ -133,7 +133,12 @@ const personSchema = {
   <link rel="preload" as="image" href="/assets/images/cursor-default.png" />
   <link rel="preload" as="image" href="/assets/images/cursor-pointer.png" />
 
-  <link rel="icon" href="/assets/images/favicon.png" />
+  <!-- favicon.ico stays at the root: chrome's omnibox and a few crawlers ask
+       for /favicon.ico directly and ignore the declared png. -->
+  <link rel="icon" href="/favicon.ico" sizes="32x32" />
+  <link rel="icon" type="image/png" href="/assets/images/icon-32.png" sizes="32x32" />
+  <link rel="apple-touch-icon" href="/assets/images/apple-touch-icon.png" />
+  <link rel="manifest" href="/site.webmanifest" />
 
   <title>{pageTitle}</title>
 
