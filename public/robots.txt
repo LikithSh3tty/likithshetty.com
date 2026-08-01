@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://likithshetty.com/sitemap-index.xml
