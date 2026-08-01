@@ -10,9 +10,12 @@ interface Props {
 
 const site = {
   name: 'likithsh3tty',
+  // The handle is the brand, but search needs the legal name: there is a
+  // Kannada film actor of the same name who owns every query for it.
+  author: 'Likith Shetty',
   tagline: 'ai/ml engineer',
   description:
-    'M.Sc. AI & ML student in Bengaluru. I build agents, retrieval systems and the occasional optimizer. Come say hi.',
+    'Likith Shetty — M.Sc. AI & ML student in Bengaluru building agents, retrieval systems and the occasional optimizer. Come say hi.',
   baseUrl: import.meta.env.DEV
     ? 'http://localhost:4321'
     : 'https://likithshetty.com',
@@ -21,10 +24,11 @@ const site = {
 
 const { title, description, image }: Props = Astro.props
 const path = Astro.url?.pathname || '/'
+const isHome = path === '/'
 
 const pageTitle = title
-  ? `${site.name} | ${title}`
-  : `${site.name} | ${site.tagline}`
+  ? `${title} | ${site.author}`
+  : `${site.author} — AI/ML Engineer, Bengaluru`
 const metaDescription = (description || site.description).trim()
 const socialDescription =
   metaDescription.length > 196
@@ -32,12 +36,53 @@ const socialDescription =
     : metaDescription
 const canonicalUrl = site.baseUrl + path
 const socialImage = image || site.thumb
+
+// Tells Google which Likith Shetty this is. sameAs is the disambiguating
+// part: it ties the domain to accounts that already rank.
+const personSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: site.author,
+  alternateName: site.name,
+  url: site.baseUrl,
+  image: site.baseUrl + site.thumb,
+  jobTitle: 'AI/ML Engineer',
+  description: site.description,
+  email: 'mailto:likithshetty188@gmail.com',
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: 'Bengaluru',
+    addressRegion: 'Karnataka',
+    addressCountry: 'IN',
+  },
+  alumniOf: [
+    {
+      '@type': 'CollegeOrUniversity',
+      name: 'CHRIST University',
+      url: 'https://christuniversity.in',
+    },
+    { '@type': 'CollegeOrUniversity', name: 'Nitte University' },
+  ],
+  knowsAbout: [
+    'Artificial Intelligence',
+    'Machine Learning',
+    'Retrieval-Augmented Generation',
+    'LLM Agents',
+    'Python',
+  ],
+  sameAs: [
+    'https://github.com/LikithSh3tty',
+    'https://linkedin.com/in/likith-shetty',
+    'https://medium.com/@shettylikith.rajesh',
+  ],
+}
 ---
 
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <meta name="description" content={metaDescription} />
+  <link rel="canonical" href={canonicalUrl} />
 
   <meta
     name="google-site-verification"
@@ -59,6 +104,20 @@ const socialImage = image || site.thumb
   <meta property="og:site_name" content={site.name} />
   <meta property="og:locale" content="en_US" />
   <meta property="article:author" content={site.baseUrl} />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={pageTitle} />
+  <meta name="twitter:description" content={socialDescription} />
+  <meta name="twitter:image" content={site.baseUrl + socialImage} />
+
+  {
+    isHome && (
+      <script
+        type="application/ld+json"
+        set:html={JSON.stringify(personSchema)}
+      />
+    )
+  }
 
   <!-- Preloads -->
   <link
