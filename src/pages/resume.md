@@ -1,5 +1,7 @@
 ---
 layout: ../layouts/MarkdownLayout.astro
+title: Résumé | Likith Shetty
+description: Résumé of Likith Shetty — M.Sc. AI & ML student at CHRIST University, Bengaluru. AI/ML engineering, agents and retrieval systems.
 ---
 
 # Likith Shetty

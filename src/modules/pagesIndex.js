@@ -18,8 +18,7 @@ export const PAGES = [
   },
   {
     aliases: ['writing', 'blog', 'medium', 'posts', 'articles'],
-    url: 'https://medium.com/@shettylikith.rajesh',
-    external: true,
+    url: '/writing/',
   },
   {
     aliases: ['playlists', 'music', 'songs', 'listening'],
