@@ -30,6 +30,18 @@ export const projects: Record<string, Project[]> = {
       description:
         'grid packing optimizer that sweeps every offset and rotation to fit the most whole cells in a polygon',
     },
+    {
+      url: 'https://github.com/LikithSh3tty/devanagari-cnn',
+      name: 'devanagari-cnn',
+      description:
+        'convolutional net written from scratch that reads all 46 handwritten Devanagari characters, taught on a hundred examples each',
+    },
+    {
+      url: 'https://github.com/LikithSh3tty/LikithSh3tty',
+      name: 'this profile',
+      description:
+        'a GitHub profile that draws itself. heatmap, ASCII portrait and info card rendered as SVG by a daily action',
+    },
   ],
   sites: [
     {
