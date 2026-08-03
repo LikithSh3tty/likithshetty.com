@@ -12,7 +12,7 @@
   />
 </picture>
 
-# likithshetty.com
+# Likith Shetty
 
 **A personal site that behaves like an old television.**
 
