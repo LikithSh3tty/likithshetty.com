@@ -28,7 +28,7 @@ const isHome = path === '/'
 
 const pageTitle = title
   ? `${title} | ${site.author}`
-  : `${site.author} — AI/ML Engineer, Bengaluru`
+  : `${site.author} | AI/ML Engineer, Bengaluru`
 const metaDescription = (description || site.description).trim()
 const socialDescription =
   metaDescription.length > 196
@@ -36,6 +36,16 @@ const socialDescription =
     : metaDescription
 const canonicalUrl = site.baseUrl + path
 const socialImage = image || site.thumb
+
+// What google prints as the site name above a result. It reads this in
+// preference to og:site_name, and only from the home page.
+const websiteSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: 'Likith Shetty',
+  alternateName: site.name,
+  url: site.baseUrl,
+}
 
 // Tells Google which Likith Shetty this is. sameAs is the disambiguating
 // part: it ties the domain to accounts that already rank.
@@ -101,7 +111,9 @@ const personSchema = {
   <meta property="og:title" content={pageTitle} />
   <meta property="og:image" content={site.baseUrl + socialImage} />
   <meta property="og:description" content={socialDescription} />
-  <meta property="og:site_name" content={site.name} />
+  <!-- The site name google prints above the result. The handle is the brand
+       everywhere else, but here it has to read as a person. -->
+  <meta property="og:site_name" content={site.author} />
   <meta property="og:locale" content="en_US" />
   <meta property="article:author" content={site.baseUrl} />
 
@@ -110,6 +122,14 @@ const personSchema = {
   <meta name="twitter:description" content={socialDescription} />
   <meta name="twitter:image" content={site.baseUrl + socialImage} />
 
+  {
+    isHome && (
+      <script
+        type="application/ld+json"
+        set:html={JSON.stringify(websiteSchema)}
+      />
+    )
+  }
   {
     isHome && (
       <script
