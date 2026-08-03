@@ -43,7 +43,12 @@ export const projects: Record<string, Project[]> = {
       description: 'the support desk, live',
     },
     {
-      url: 'https://github.com/LikithSh3tty/Portfolio',
+      url: 'https://driftbell.vercel.app',
+      name: 'driftbell',
+      description: 'the drift watchman, live',
+    },
+    {
+      url: 'https://github.com/LikithSh3tty/likithshetty.com',
       name: 'this website',
       description: 'a television. astro, svelte, and rather a lot of scanlines',
     },
