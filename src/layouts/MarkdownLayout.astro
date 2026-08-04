@@ -7,6 +7,9 @@ interface Props {
   frontmatter?: {
     title?: string
     description?: string
+    // Emitted verbatim as JSON-LD. Project pages use it to declare
+    // SoftwareSourceCode; pages that omit it emit no schema at all.
+    schema?: Record<string, unknown>
   }
 }
 
@@ -33,6 +36,15 @@ const canonicalUrl = new URL(Astro.url.pathname, 'https://likithshetty.com').hre
       href="/assets/images/icon-32.png"
       sizes="32x32"
     />
+
+    {
+      frontmatter?.schema && (
+        <script
+          type="application/ld+json"
+          set:html={JSON.stringify(frontmatter.schema)}
+        />
+      )
+    }
 
     <title>{title}</title>
   </head>

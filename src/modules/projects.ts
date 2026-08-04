@@ -2,6 +2,8 @@ export type Project = {
   url: string
   name: string
   description: string
+  /** Internal write-up, for the ones that have more to say than a line. */
+  page?: string
 }
 
 export const projects: Record<string, Project[]> = {
@@ -23,6 +25,7 @@ export const projects: Record<string, Project[]> = {
       name: 'driftbell',
       description:
         'ML drift watchman on n8n and LangGraph that investigates before it acts, and asks you first',
+      page: '/open-source/driftbell/',
     },
     {
       url: 'https://github.com/LikithSh3tty/Grid0pt',
