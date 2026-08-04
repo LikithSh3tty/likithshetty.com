@@ -38,6 +38,7 @@ export const projects: Record<string, Project[]> = {
       name: 'invision',
       description:
         'indoor mall navigation from one photo of a shopfront, fusing CLIP retrieval with the signage text, then routing you across floors',
+      page: '/open-source/invision/',
     },
     {
       url: 'https://github.com/LikithSh3tty/devanagari-cnn',
