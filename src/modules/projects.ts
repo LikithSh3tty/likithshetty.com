@@ -34,6 +34,12 @@ export const projects: Record<string, Project[]> = {
         'grid packing optimizer that sweeps every offset and rotation to fit the most whole cells in a polygon',
     },
     {
+      url: 'https://github.com/LikithSh3tty/Indoor-Mall-Navigation',
+      name: 'invision',
+      description:
+        'indoor mall navigation from one photo of a shopfront, fusing CLIP retrieval with the signage text, then routing you across floors',
+    },
+    {
       url: 'https://github.com/LikithSh3tty/devanagari-cnn',
       name: 'devanagari-cnn',
       description:
