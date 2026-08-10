@@ -57,22 +57,26 @@ export const projects: Record<string, Project[]> = {
     {
       url: 'https://agenvox.vercel.app',
       name: 'agenvo',
-      description: 'the income tracker, live',
+      description:
+        'the income tracker, live. sign in, run the onboarding wizard, and split a sale across an agency the way the contract actually reads. React and Firebase on the front, a LangGraph assistant behind it that answers out of your own numbers rather than a canned report',
     },
     {
       url: 'https://cloudnest-nine.vercel.app',
       name: 'cloudnest',
-      description: 'the support desk, live',
+      description:
+        'the support desk, live. ask it something in your own words and it retrieves by meaning, fuses two rankings with RRF, and escalates to a ticket when it cannot find an answer it believes. the whole embedding model fits inside the function, so a query costs nothing and leaves no data anywhere',
     },
     {
       url: 'https://driftbell.vercel.app',
       name: 'driftbell',
-      description: 'the drift watchman, live',
+      description:
+        'the drift watchman, live. watch it notice a population shift, work out which features moved, and then stop dead at the approval gate instead of retraining behind your back',
     },
     {
       url: 'https://github.com/LikithSh3tty/likithshetty.com',
       name: 'this website',
-      description: 'a television. astro, svelte, and rather a lot of scanlines',
+      description:
+        'a television. Astro and Svelte, static at the edge, with rather a lot of scanlines. the channels are real video, the remote works, and typing a page name into the breadcrumb navigates there',
     },
   ],
 } as const

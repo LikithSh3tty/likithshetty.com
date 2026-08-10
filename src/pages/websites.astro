@@ -4,9 +4,29 @@ import { projects } from '../modules/projects'
 import ProjectList from '../components/ProjectList.astro'
 ---
 
-<TVLayout title="websites">
+<TVLayout
+  title="websites"
+  description="Live things Likith Shetty has built and deployed — an agency income tracker, a semantic support desk, and a model-drift watchman."
+>
   <article>
-  <h1 class="sr-only">Websites built by Likith Shetty</h1>
-  <ProjectList items={projects.sites} />
+    <h1 class="sr-only">Websites built by Likith Shetty</h1>
+    <p class="intro">
+      The ones that are deployed rather than only on <a href="/open-source/"
+        >GitHub</a
+      >. Each is a whole product I built alone — front end, backend, model and
+      deploy — so you can click into them instead of reading about them. Two of
+      them have a longer write-up: <a href="/open-source/driftbell/">DriftBell</a
+      > and <a href="/open-source/invision/">InVision</a>.
+    </p>
+    <ProjectList items={projects.sites} />
   </article>
 </TVLayout>
+
+<style>
+  .intro {
+    margin: 0 0 2.6rem;
+    max-width: 46rem;
+    color: var(--text-primary);
+    font-size: var(--font-size-primary);
+  }
+</style>
