@@ -5,7 +5,9 @@ import SpaceTrigger from './SpaceTrigger.svelte'
 <footer class="footer" id="footer">
   <ul class="link-list">
     <li>
-      <a href="/resume" rel="noopener noreferrer" target="_blank">RESUME</a>
+      <!-- Canonical form with the trailing slash: '/resume' also answers 200,
+           but it is not the URL the page declares as canonical. -->
+      <a href="/resume/">RESUME</a>
     </li>
     <li>
       <a
