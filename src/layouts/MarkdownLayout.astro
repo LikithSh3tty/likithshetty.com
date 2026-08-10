@@ -19,7 +19,25 @@ const title = frontmatter?.title ?? 'Likith Shetty'
 const description =
   frontmatter?.description ??
   'Likith Shetty — M.Sc. AI & ML student in Bengaluru building agents, retrieval systems and the occasional optimizer.'
-const canonicalUrl = new URL(Astro.url.pathname, 'https://likithshetty.com').href
+const site = 'https://likithshetty.com'
+const canonicalUrl = new URL(Astro.url.pathname, site).href
+const socialImage = site + '/assets/images/big-rainbow-static.jpg'
+
+// These pages render outside the TV shell, so they inherit none of its header
+// or footer. Without this they are dead ends: nothing links out of them, and
+// the crawler that lands on one has nowhere to go.
+const siteNav = [
+  { label: 'home', href: '/' },
+  { label: 'open-source', href: '/open-source/' },
+  { label: 'websites', href: '/websites/' },
+  { label: 'writing', href: '/writing/' },
+  { label: 'playlists', href: '/playlists/' },
+  { label: 'resume', href: '/resume/' },
+]
+
+const path = Astro.url.pathname
+const isCurrent = (href: string) =>
+  path === href || path === href.replace(/\/$/, '')
 ---
 
 <html lang="en">
@@ -28,6 +46,19 @@ const canonicalUrl = new URL(Astro.url.pathname, 'https://likithshetty.com').hre
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalUrl} />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={socialImage} />
+    <meta property="og:site_name" content="Likith Shetty" />
+    <meta property="og:locale" content="en_US" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={socialImage} />
 
     <link rel="icon" href="/favicon.ico" sizes="32x32" />
     <link
@@ -51,6 +82,34 @@ const canonicalUrl = new URL(Astro.url.pathname, 'https://likithshetty.com').hre
   <body>
     <article class="markdown-body">
       <slot />
+
+      <nav class="page-nav" aria-label="site">
+        {
+          siteNav.map((item) =>
+            isCurrent(item.href) ? (
+              <span aria-current="page">{item.label}</span>
+            ) : (
+              <a href={item.href}>{item.label}</a>
+            )
+          )
+        }
+      </nav>
     </article>
   </body>
 </html>
+
+<style>
+  .page-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4em 1.2em;
+    margin-top: 3em;
+    padding-top: 1em;
+    border-top: 1px solid #e1e4e8;
+    font-size: 0.8em;
+  }
+
+  .page-nav [aria-current='page'] {
+    color: #6a737d;
+  }
+</style>
