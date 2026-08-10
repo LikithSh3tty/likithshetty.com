@@ -86,6 +86,24 @@ const personSchema = {
     'https://medium.com/@shettylikith.rajesh',
   ],
 }
+
+// Tells google where an inner page sits, which is otherwise only implied by
+// the breadcrumb widget in the header. Home already carries two blocks of
+// JSON-LD, so it is skipped there.
+const segments = path.split('/').filter(Boolean)
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'home', item: site.baseUrl + '/' },
+    ...segments.map((segment, i) => ({
+      '@type': 'ListItem',
+      position: i + 2,
+      name: segment.replace(/-/g, ' '),
+      item: site.baseUrl + '/' + segments.slice(0, i + 1).join('/') + '/',
+    })),
+  ],
+}
 ---
 
 <head>
@@ -93,6 +111,7 @@ const personSchema = {
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <meta name="description" content={metaDescription} />
   <link rel="canonical" href={canonicalUrl} />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
 
   <meta
     name="google-site-verification"
@@ -135,6 +154,14 @@ const personSchema = {
       <script
         type="application/ld+json"
         set:html={JSON.stringify(personSchema)}
+      />
+    )
+  }
+  {
+    !isHome && (
+      <script
+        type="application/ld+json"
+        set:html={JSON.stringify(breadcrumbSchema)}
       />
     )
   }
