@@ -1,11 +1,19 @@
 ---
 import HeaderControls from './HeaderControls.svelte'
 
-// List of primary navigation pages for the home screen menu.
-// label: text shown; href MUST end with trailing slash (except '/') for easier matching
-const homeNav = [
+// Primary navigation, rendered on every page rather than only the home screen.
+// Inner pages used to carry nothing but a breadcrumb back to '/', which left
+// /websites/, /playlists/ and /resume/ with a single inbound link each and
+// google sitting on them at "discovered - currently not indexed".
+// label: text shown; href MUST end with trailing slash (except '/') for easier
+// matching, and must be the canonical form: a link to '/resume' rather than
+// '/resume/' points at a URL google will not treat as the canonical one.
+const siteNav = [
   { label: 'open-source', href: '/open-source/' },
   { label: 'websites', href: '/websites/' },
+  { label: 'writing', href: '/writing/' },
+  { label: 'playlists', href: '/playlists/' },
+  { label: 'resume', href: '/resume/' },
 ]
 
 // Utility: normalise path to have leading and trailing slash (except for root which is '/')
@@ -45,21 +53,12 @@ const buildTimeDate = new Intl.DateTimeFormat('en-US', {
 
 <header class="header">
   <div class="header__container">
-    <nav class="nav">
+    <nav class="nav" aria-label="primary">
       {
         isHome ? (
-          <>
-            <ul class="nav__breadcrumb">
-              <li>LS</li>
-            </ul>
-            <ul class="nav__menu">
-              {homeNav.map((item) => (
-                <li>
-                  <a href={item.href}>{item.label}</a>
-                </li>
-              ))}
-            </ul>
-          </>
+          <ul class="nav__breadcrumb">
+            <li>LS</li>
+          </ul>
         ) : (
           <ul class="nav__breadcrumb">
             <li>
@@ -82,6 +81,20 @@ const buildTimeDate = new Intl.DateTimeFormat('en-US', {
           </ul>
         )
       }
+      <ul class="nav__menu">
+        {
+          siteNav.map((item) => (
+            <li>
+              <a
+                href={item.href}
+                aria-current={currentPath === item.href ? 'page' : undefined}
+              >
+                {item.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
     </nav>
 
     <div class="header__info" transition:persist>
@@ -147,6 +160,16 @@ const buildTimeDate = new Intl.DateTimeFormat('en-US', {
           visibility: hidden;
         }
       }
+    }
+  }
+
+  .nav__menu {
+    margin-top: 0.9rem;
+
+    /* The page you are already on stays in the list so the markup is the same
+       everywhere, but it reads as inactive. */
+    & [aria-current='page'] {
+      color: var(--text-secondary);
     }
   }
 
