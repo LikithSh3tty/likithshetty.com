@@ -1,6 +1,6 @@
 ---
 import TVLayout from '../layouts/TVLayout.astro'
-import { PLAYLIST_ID } from '../modules/playlists'
+import { PLAYLIST_ID, songs } from '../modules/playlists'
 
 // The songs, not the playlist index. Spotify's Client Credentials flow
 // returns playlist metadata but 403s on /tracks, so the public embed is
@@ -12,7 +12,12 @@ const src = `https://open.spotify.com/embed/playlist/${PLAYLIST_ID}?utm_source=g
 <TVLayout title="playlists" description="What Likith Shetty builds things to.">
   <article class="playlists">
     <h1 class="sr-only">Playlists Likith Shetty builds things to</h1>
-    <p class="intro">Almost none of it gets built in silence.</p>
+    <p class="intro">
+      Almost none of it gets built in silence. This is <em>ifwt</em>, the
+      playlist most of the code on <a href="/open-source/">this list</a> was
+      written to — mostly Frank Ocean, Tame Impala, Karan Aujla and a stubborn
+      seam of Hindi film music from the 2000s.
+    </p>
 
     <div class="frame">
       <iframe
@@ -33,6 +38,21 @@ const src = `https://open.spotify.com/embed/playlist/${PLAYLIST_ID}?utm_source=g
         rel="noopener noreferrer">Open in Spotify</a
       >
     </p>
+
+    <!-- The embed above is an iframe, so to anything that is not a browser
+         this page reads as one sentence. The list is the page's actual
+         content; it also stands in when spotify is blocked. -->
+    <h2 class="tracks__heading">ifwt, in full</h2>
+    <ol class="tracks">
+      {
+        songs.map((song) => (
+          <li>
+            <span class="tracks__name">{song.name}</span>
+            <span class="tracks__artist">{song.artist}</span>
+          </li>
+        ))
+      }
+    </ol>
   </article>
 </TVLayout>
 
@@ -60,5 +80,47 @@ const src = `https://open.spotify.com/embed/playlist/${PLAYLIST_ID}?utm_source=g
     margin: 1.2rem 0 0;
     font-size: var(--font-size-primary);
     text-transform: uppercase;
+  }
+
+  .tracks__heading {
+    margin: 3.2rem 0 1.2rem;
+    color: var(--text-secondary);
+    font-size: var(--font-size-secondary);
+    font-weight: normal;
+    text-transform: uppercase;
+  }
+
+  .tracks {
+    margin: 0;
+    padding: 0;
+    max-width: 46rem;
+    list-style: none;
+    counter-reset: track;
+    font-size: var(--font-size-primary);
+
+    & li {
+      display: flex;
+      gap: 1ch;
+      justify-content: space-between;
+      counter-increment: track;
+
+      &::before {
+        content: counter(track) '.';
+        flex: none;
+        color: var(--text-secondary);
+      }
+    }
+  }
+
+  .tracks__name {
+    flex: 1;
+    color: var(--text-primary);
+  }
+
+  .tracks__artist {
+    flex: none;
+    max-width: 40%;
+    color: var(--text-secondary);
+    text-align: right;
   }
 </style>
