@@ -3,17 +3,23 @@ import HeaderControls from './HeaderControls.svelte'
 
 // Primary navigation, rendered on every page rather than only the home screen.
 // Inner pages used to carry nothing but a breadcrumb back to '/', which left
-// /websites/, /playlists/ and /resume/ with a single inbound link each and
-// google sitting on them at "discovered - currently not indexed".
+// them with a single inbound link each and google sitting on them at
+// "discovered - currently not indexed".
+//
+// Only the two work pages are listed. /writing/, /playlists/ and /resume/ are
+// deliberately kept out so the menu reads as a body of work rather than a list
+// of everything. They keep their inbound links: all three are linked from the
+// prose on the home page, /resume/ is in the sitewide footer, and the markdown
+// pages carry their own list of all six in MarkdownLayout's .page-nav. Trimming
+// that one too would put them back on a single link each, which is the state
+// that got them "discovered - currently not indexed" in the first place.
+//
 // label: text shown; href MUST end with trailing slash (except '/') for easier
 // matching, and must be the canonical form: a link to '/resume' rather than
 // '/resume/' points at a URL google will not treat as the canonical one.
 const siteNav = [
   { label: 'open-source', href: '/open-source/' },
   { label: 'websites', href: '/websites/' },
-  { label: 'writing', href: '/writing/' },
-  { label: 'playlists', href: '/playlists/' },
-  { label: 'resume', href: '/resume/' },
 ]
 
 // Utility: normalise path to have leading and trailing slash (except for root which is '/')
