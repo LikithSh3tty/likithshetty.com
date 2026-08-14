@@ -60,4 +60,20 @@ export function setupClientNavigation() {
   document.addEventListener('astro:after-swap', () => {
     loadingPage.set(LOADING_STATE.Done)
   })
+
+  // 'astro:after-swap' is the only thing that clears the loading state, and it
+  // never fires when the router hands the navigation back to the browser. It
+  // does that for every markdown page: those render their own document out of
+  // MarkdownLayout, with no ClientRouter and so no view-transitions meta, so
+  // the router gets as far as 'astro:before-preparation' - which has already
+  // set Loading - then gives up and does a full page load.
+  //
+  // On its own that is harmless, since the page is being thrown away. The bug
+  // is bfcache: the page is frozen mid-navigation with Loading still set, and
+  // coming back restores that heap verbatim, so the screen sits under the
+  // static overlay forever. Reset on restore, which is the one moment we know
+  // the page is up and no navigation is in flight.
+  window.addEventListener('pageshow', (event) => {
+    if (event.persisted) loadingPage.set(LOADING_STATE.Done)
+  })
 }
