@@ -5,13 +5,14 @@ import TV from '../components/TV/TV.astro'
 interface Props {
   title?: string
   description?: string
+  noindex?: boolean
 }
 
-const { title, description }: Props = Astro.props
+const { title, description, noindex }: Props = Astro.props
 ---
 
 <html lang="en">
-  <Head title={title} description={description} />
+  <Head title={title} description={description} noindex={noindex} />
   <body>
     <TV>
       <slot />

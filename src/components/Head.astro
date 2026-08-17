@@ -6,6 +6,10 @@ interface Props {
   title?: string
   description?: string
   image?: string
+  // Keeps a page out of the index and stops it claiming a canonical. Only the
+  // 404 needs it: it is served under every wrong URL on the site, so a
+  // canonical would point a crawler at an address that answers 404.
+  noindex?: boolean
 }
 
 const site = {
@@ -22,7 +26,7 @@ const site = {
   thumb: '/assets/images/big-rainbow-static.jpg',
 }
 
-const { title, description, image }: Props = Astro.props
+const { title, description, image, noindex }: Props = Astro.props
 const path = Astro.url?.pathname || '/'
 const isHome = path === '/'
 
@@ -110,8 +114,11 @@ const breadcrumbSchema = {
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <meta name="description" content={metaDescription} />
-  <link rel="canonical" href={canonicalUrl} />
-  <meta name="robots" content="index, follow, max-image-preview:large" />
+  {!noindex && <link rel="canonical" href={canonicalUrl} />}
+  <meta
+    name="robots"
+    content={noindex ? 'noindex, follow' : 'index, follow, max-image-preview:large'}
+  />
 
   <meta
     name="google-site-verification"
