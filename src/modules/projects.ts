@@ -41,6 +41,24 @@ export const projects: Record<string, Project[]> = {
       page: '/open-source/invision/',
     },
     {
+      url: 'https://github.com/LikithSh3tty/Riskwright',
+      name: 'riskwright',
+      description:
+        'credit risk scoring that has to explain itself, with SHAP behind ECOA adverse-action reason codes, a fair-lending audit, and a text-to-SQL chatbot held behind a validation gate',
+    },
+    {
+      url: 'https://github.com/LikithSh3tty/Smart-classroom-automation',
+      name: 'smart-classroom',
+      description:
+        'ESP32 controller that arbitrates between the sensors, the class timetable and a remote cloud command, then reports what it decided',
+    },
+    {
+      url: 'https://github.com/LikithSh3tty/Veriquill',
+      name: 'veriquill',
+      description:
+        'hiring intelligence that reads the commit history rather than the resume, deterministic on every scoring path and gated on a human',
+    },
+    {
       url: 'https://github.com/LikithSh3tty/devanagari-cnn',
       name: 'devanagari-cnn',
       description:
@@ -71,6 +89,12 @@ export const projects: Record<string, Project[]> = {
       name: 'driftbell',
       description:
         'the drift watchman, live. watch it notice a population shift, work out which features moved, and then stop dead at the approval gate instead of retraining behind your back',
+    },
+    {
+      url: 'http://159.65.157.86',
+      name: 'riskwright',
+      description:
+        'the credit desk, live. score an applicant and it hands back a default probability with the reasons that drove it, written in the adverse-action language a regulator expects. ask the chatbot something in English and it writes the SQL, validates it, and refuses rather than guesses. LightGBM and SHAP behind FastAPI, React and Postgres, the whole thing Dockerised',
     },
     {
       url: 'https://github.com/LikithSh3tty/likithshetty.com',
