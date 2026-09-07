@@ -22,6 +22,15 @@ products rather than demos.
 
 ## Experience
 
+**AI Intern**, Ontara AI Solutions, Bengaluru
+Jun 2026 to Aug 2026
+
+- Built retrieval-augmented generation pipelines and generative AI features that
+  went into client-facing products.
+- Orchestrated agent workflows in LangGraph with tool calling and conditional
+  routing, so a multi-step task runs to the end rather than in one shot.
+- Worked in Python across LangChain, vector databases and LLM APIs.
+
 **Software Development Intern**, PayNearby, Mumbai
 Jun 2024 to Jul 2024
 
